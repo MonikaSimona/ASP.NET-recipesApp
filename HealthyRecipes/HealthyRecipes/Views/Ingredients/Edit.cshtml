@@ -1,0 +1,59 @@
+﻿@model HealthyRecipes.Models.Ingredient
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Ingredient</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label"></label>
+                <input asp-for="ImageUrl" class="form-control" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaloriesPerItem" class="control-label"></label>
+                <input asp-for="CaloriesPerItem" class="form-control" />
+                <span asp-validation-for="CaloriesPerItem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProteinsPerItem" class="control-label"></label>
+                <input asp-for="ProteinsPerItem" class="form-control" />
+                <span asp-validation-for="ProteinsPerItem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VitaminsPerItem" class="control-label"></label>
+                <input asp-for="VitaminsPerItem" class="form-control" />
+                <span asp-validation-for="VitaminsPerItem" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IngredientFact" class="control-label"></label>
+                <input asp-for="IngredientFact" class="form-control" />
+                <span asp-validation-for="IngredientFact" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
