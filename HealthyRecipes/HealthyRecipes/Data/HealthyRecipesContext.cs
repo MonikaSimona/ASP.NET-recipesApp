@@ -19,5 +19,23 @@ namespace HealthyRecipes.Data
         public DbSet<HealthyRecipes.Models.Ingredient> Ingredient { get; set; }
 
         public DbSet<HealthyRecipes.Models.Chef> Chef { get; set; }
+        public DbSet<RecipeIngredient> RecipeIngredient { get; set; }
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<RecipeIngredient>()
+                .HasOne<Recipe>(p => p.Recipe)
+                .WithMany(p => p.Ingredients)
+                .HasForeignKey(p => p.RecipeId);
+
+            builder.Entity<RecipeIngredient>()
+                .HasOne<Ingredient>(p => p.Ingredient)
+                .WithMany(p => p.Recipes)
+                .HasForeignKey(p => p.IngredientId);
+
+            builder.Entity<Recipe>()
+                .HasOne<Chef>(p => p.Chef)
+                .WithMany(p => p.Recipes)
+                .HasForeignKey(p => p.ChefId);
+        }
     }
 }

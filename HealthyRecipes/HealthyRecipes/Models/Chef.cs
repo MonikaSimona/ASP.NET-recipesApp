@@ -16,7 +16,7 @@ namespace HealthyRecipes.Models
         [Required]
         [StringLength(50)]
 
-        public int LastName { get; set; }
+        public string LastName { get; set; }
 
         public string FullName
         {

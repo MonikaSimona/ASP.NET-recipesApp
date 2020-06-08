@@ -16,8 +16,10 @@ namespace HealthyRecipes.Models
         [Required]
         public int CaloriesPerItem { get; set; }
         [Required]
-        public int ProteinsPerItem { get; set; }
-        public int VitaminsPerItem { get; set; }
+        public double ProteinsPerItem { get; set; }
+        [Required]
+        public double SugarPerItem { get; set; }
+        
         [StringLength(300)]
         public string IngredientFact { get; set; }
         public ICollection<RecipeIngredient> Recipes { get; set; }

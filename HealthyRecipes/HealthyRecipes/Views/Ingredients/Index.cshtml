@@ -4,12 +4,12 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h2>Ingredients</h2>
 
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+@*<table class="table">
     <thead>
         <tr>
             <th>
@@ -25,7 +25,7 @@
                 @Html.DisplayNameFor(model => model.ProteinsPerItem)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.VitaminsPerItem)
+                @Html.DisplayNameFor(model => model.SugarPerItem)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IngredientFact)
@@ -49,7 +49,7 @@
                 @Html.DisplayFor(modelItem => item.ProteinsPerItem)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VitaminsPerItem)
+                @Html.DisplayFor(modelItem => item.SugarPerItem)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IngredientFact)
@@ -62,4 +62,34 @@
         </tr>
 }
     </tbody>
-</table>
+</table>*@
+<div class="center-div">
+    <div class="card-columns">
+        @foreach (var item in Model)
+        {
+            <div class="card">
+
+                <div class="card-body">
+                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.Name)</h5>
+                </div>
+                <div class="card-img"><img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="355" height="200" /></div>
+                <div class="card-footer">
+                    Proteins per item:
+                    @Html.DisplayFor(modelItem => item.ProteinsPerItem) grams<br />
+                    Calories per item:
+                    @Html.DisplayFor(modelItem => item.CaloriesPerItem) <br />
+                    Sugar per item:
+                    @Html.DisplayFor(modelItem => item.SugarPerItem) grams
+                    <br /><br />
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+
+                </div>
+            </div>
+
+
+        }
+    </div>
+</div>
