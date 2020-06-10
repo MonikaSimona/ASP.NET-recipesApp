@@ -36,6 +36,8 @@ namespace HealthyRecipes.Controllers
 
             var recipe = await _context.Recipe
                 .Include(r => r.Chef)
+                .Include(r => r.Ingredients)
+                .ThenInclude(r => r.Ingredient)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (recipe == null)
             {

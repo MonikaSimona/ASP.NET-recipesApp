@@ -34,6 +34,7 @@ namespace HealthyRecipes.Controllers
             }
 
             var chef = await _context.Chef
+                .Include(m => m.Recipes)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (chef == null)
             {

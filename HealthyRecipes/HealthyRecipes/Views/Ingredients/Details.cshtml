@@ -4,23 +4,23 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+
 
 <div>
-    <h4>Ingredient</h4>
+   
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
+            
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Name)
         </dd>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.ImageUrl)
+           
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ImageUrl)
+            <img src="@Html.DisplayFor(model => model.ImageUrl)" width="300" height="250" />
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CaloriesPerItem)
@@ -32,22 +32,31 @@
             @Html.DisplayNameFor(model => model.ProteinsPerItem)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ProteinsPerItem)
+            @Html.DisplayFor(model => model.ProteinsPerItem) grams
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.SugarPerItem)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.SugarPerItem)
+            @Html.DisplayFor(model => model.SugarPerItem) grams
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IngredientFact)
+        <dt class="col-sm-2">
+            Fact about @Html.DisplayFor(model => model.Name) :
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.IngredientFact)
         </dd>
     </dl>
 </div>
+<p>You can find this ingredient in :</p>
+@if(Model.Recipes != null)
+{
+    @foreach(var recipe in Model.Recipes)
+    {
+        <a asp-action="Details" asp-route-id="@recipe.RecipeId">@recipe.Recipe.Title</a>
+    }
+}
+<br />
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
