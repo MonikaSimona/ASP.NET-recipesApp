@@ -22,6 +22,8 @@ namespace HealthyRecipes.Models
         
         [StringLength(300)]
         public string IngredientFact { get; set; }
+
+        public int Amount { get; set; }
         public ICollection<RecipeIngredient> Recipes { get; set; }
 
     }

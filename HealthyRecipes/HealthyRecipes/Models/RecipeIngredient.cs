@@ -12,16 +12,9 @@ namespace HealthyRecipes.Models
         public Recipe Recipe { get; set; }
         public int IngredientId { get; set; }
         public Ingredient Ingredient { get; set; }
-        public int IngredientQuantity {
-            get {
-                return IngredientQuantity+1;
-            } }
+        public int IngredientQuantity { get; set; }
 
-        public int CaloriesPerRecipe { 
-            get 
-            { return Ingredient.CaloriesPerItem++; } }
-        public double ProteinsPerRecipe {
-            get
-            { return Ingredient.ProteinsPerItem++; }  }
+        public int CaloriesPerRecipe { get; set; }
+        public double ProteinsPerRecipe { get; set; }
     }
 }

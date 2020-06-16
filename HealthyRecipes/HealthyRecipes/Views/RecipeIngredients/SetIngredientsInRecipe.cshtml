@@ -1,0 +1,54 @@
+﻿@model HealthyRecipes.ViewModels.SetIngredientsViewModel
+@{
+    ViewData["Title"] = "Set Ingredients In Recipe";
+}
+
+<h2>Set Ingredients In Recipe</h2>
+<hr />
+<form asp-action="SetIngredientsInRecipe">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    @Html.DisplayNameFor(model => model.RecipeId): <select asp-for="RecipeId" asp-items="Model.Recipes">
+        <option value=""></option>
+    </select>
+    @Html.DisplayNameFor(model => model.IngredientQuntity): <select asp-for="IngredientQuntity" asp-items="Model.IngredientQuntities">
+        <option value=""></option>
+    </select>
+    @Html.DisplayNameFor(model => model.CaloriesPerRecipe): <select asp-for="CaloriesPerRecipe" asp-items="Model.CaloriesPerRecipes">
+        <option value=""></option>
+    </select>
+    @Html.DisplayNameFor(model => model.ProteinsPerRecipe): <select asp-for="ProteinsPerRecipe" asp-items="Model.ProteinsPerRecipes">
+        <option value=""></option>
+    </select>
+    <hr />
+    <div class="row">
+        <div class="col-md-8">
+            <div class="form-group">
+                <label asp-for="IngredientIds" class="control-label"></label>
+                <select asp-for="IngredientIds" class="form-control js-example-basic-multiple" asp-items="Model.Ingredients">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group col-md-12">
+            <hr />
+            <input type="submit" value="Set Selected" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to Ingredients</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#RecipeId").select2();
+            $("#IngredientIds").select2();
+        });
+    </script>
+}
+

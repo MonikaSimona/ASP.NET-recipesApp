@@ -4,14 +4,16 @@ using HealthyRecipes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HealthyRecipes.Migrations
 {
     [DbContext(typeof(HealthyRecipesContext))]
-    partial class HealthyRecipesContextModelSnapshot : ModelSnapshot
+    [Migration("20200615102506_IngredientId")]
+    partial class IngredientId
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,6 +98,9 @@ namespace HealthyRecipes.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("int");
+
                     b.Property<TimeSpan>("PrepareTime")
                         .HasColumnType("time");
 
@@ -121,17 +126,8 @@ namespace HealthyRecipes.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CaloriesPerRecipe")
-                        .HasColumnType("int");
-
                     b.Property<int>("IngredientId")
                         .HasColumnType("int");
-
-                    b.Property<int>("IngredientQuantity")
-                        .HasColumnType("int");
-
-                    b.Property<double>("ProteinsPerRecipe")
-                        .HasColumnType("float");
 
                     b.Property<int>("RecipeId")
                         .HasColumnType("int");

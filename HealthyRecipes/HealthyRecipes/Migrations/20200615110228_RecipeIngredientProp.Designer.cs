@@ -4,14 +4,16 @@ using HealthyRecipes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HealthyRecipes.Migrations
 {
     [DbContext(typeof(HealthyRecipesContext))]
-    partial class HealthyRecipesContextModelSnapshot : ModelSnapshot
+    [Migration("20200615110228_RecipeIngredientProp")]
+    partial class RecipeIngredientProp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -125,9 +127,6 @@ namespace HealthyRecipes.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("IngredientId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("IngredientQuantity")
                         .HasColumnType("int");
 
                     b.Property<double>("ProteinsPerRecipe")

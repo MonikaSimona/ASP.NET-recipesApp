@@ -15,7 +15,7 @@ namespace HealthyRecipes.Models
         [StringLength(300)]
         [Required]
         public string Description { get; set; }
-        [DataType(DataType.Time)]
+        [DataType(DataType.Duration)]
         [Required]
         public TimeSpan PrepareTime { get; set; }
         [Required]
@@ -23,6 +23,7 @@ namespace HealthyRecipes.Models
         public string Type { get; set; }
         public int ChefId { get; set; }
         public Chef Chef { get; set; }
+        
         public ICollection<RecipeIngredient> Ingredients { get; set; }
     }
 }

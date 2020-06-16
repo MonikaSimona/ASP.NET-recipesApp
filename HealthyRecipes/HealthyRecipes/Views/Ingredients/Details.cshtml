@@ -53,7 +53,7 @@
 {
     @foreach(var recipe in Model.Recipes)
     {
-        <a asp-action="Details" asp-route-id="@recipe.RecipeId">@recipe.Recipe.Title</a>
+        <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Recipe.Id">@recipe.Recipe.Title</a>
     }
 }
 <br />

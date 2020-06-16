@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using HealthyRecipes.Data;
 using HealthyRecipes.Models;
+using System.Globalization;
+using HealthyRecipes.ViewModels;
 
 namespace HealthyRecipes.Controllers
 {
@@ -20,10 +22,24 @@ namespace HealthyRecipes.Controllers
         }
 
         // GET: Recipes
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string recipeType, string searchString )
         {
-            var healthyRecipesContext = _context.Recipe.Include(r => r.Chef);
-            return View(await healthyRecipesContext.ToListAsync());
+            IQueryable<Recipe> recipes = _context.Recipe.AsQueryable();
+            IQueryable<string> typeQuery = _context.Recipe.OrderBy(r => r.Type).Select(r => r.Type).Distinct();
+
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                recipes = recipes.Where(r => r.Type == recipeType);
+
+            }
+            recipes = recipes.Include(r => r.Chef).Include(r => r.Ingredients).ThenInclude(r => r.Ingredient);
+            var recipeTypeViewModel = new RecipeTypeViewModel
+            {
+                Types = new SelectList(await typeQuery.ToListAsync()),
+                Recipes = await recipes.ToListAsync()
+            };
+           
+            return View(recipeTypeViewModel);
         }
 
         // GET: Recipes/Details/5

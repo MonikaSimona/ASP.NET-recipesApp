@@ -1,4 +1,7 @@
-﻿@model IEnumerable<HealthyRecipes.Models.Recipe>
+﻿@*@model IEnumerable<HealthyRecipes.Models.Recipe>*@
+
+@model HealthyRecipes.ViewModels.RecipeTypeViewModel
+
 
 @{
     ViewData["Title"] = "Index";
@@ -9,61 +12,19 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PrepareTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Chef)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                <h3>@Html.DisplayFor(modelItem => item.Title)</h3><br/>
-                <img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="200" height="150" />
-            </td>
-   
-            <td>Prepare Time: 
-                @Html.DisplayFor(modelItem => item.PrepareTime) minutes
-                <br /><br />
-                Type of recipe: 
-                @Html.DisplayFor(modelItem => item.Type)
-                <br /><br />
-                Made by :
-                @Html.DisplayFor(modelItem => item.Chef.FullName)
-            </td>
-         
-            
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@
+<form asp-controller="Recipes" asp-action="Index" method="get">
+    <p>
+        <select asp-for="RecipeType" asp-items="Model.Types">
+            <option value="">All</option>
+        </select>
+        Title: <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
 
 <div class="card-columns">
-    @foreach (var item  in Model)
+    @foreach (var item  in Model.Recipes)
     {
     <div class="card">
 

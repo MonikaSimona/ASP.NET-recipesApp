@@ -177,3 +177,9 @@ C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\Hea
 C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\staticwebassets\HealthyRecipes.StaticWebAssets.xml
 C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\HealthyRecipes.genruntimeconfig.cache
 C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\HealthyRecipes.csprojAssemblyReference.cache
+C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\Create.cshtml.g.cs
+C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\Delete.cshtml.g.cs
+C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\Details.cshtml.g.cs
+C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\Edit.cshtml.g.cs
+C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\Index.cshtml.g.cs
+C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\SetIngredientsInRecipe.cshtml.g.cs
