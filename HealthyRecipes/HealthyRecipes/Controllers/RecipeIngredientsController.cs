@@ -118,6 +118,12 @@ namespace HealthyRecipes.Controllers
                         .FirstOrDefaultAsync(r => r.Id == riId);
                     if (recipeIngredient != null)
                     {
+
+                        //recipeIngredient.Ingredient.Name = "";
+                        //recipeIngredient.Ingredient.ProteinsPerItem = 0;
+                        //recipeIngredient.Ingredient.CaloriesPerItem = 0;
+                        //recipeIngredient.Ingredient.SugarPerItem = 0;
+
                         _context.Update(recipeIngredient);
                     }
 
