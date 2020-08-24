@@ -43,7 +43,8 @@
             Made by:
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Chef.FullName)
+            <a asp-controller="Chefs" asp-action="Details" asp-route-id="@Model.Chef.Id" >@Html.DisplayFor(model => model.Chef.FullName)</a>
+            
         </dd>
     </dl>
 </div>
@@ -54,7 +55,7 @@
 
 @foreach (var ingredient in Model.Ingredients)
 {
-    <a asp-action="Details" asp-route-id="@ingredient.Ingredient.Id">@ingredient.Ingredient.Name</a>
+    <a  asp-controller="Ingredients" asp-action="Details" asp-route-id="@ingredient.Ingredient.Id">@ingredient.Ingredient.Name</a>
    <ul>
        <li>
           Calories @ingredient.Ingredient.CaloriesPerItem 

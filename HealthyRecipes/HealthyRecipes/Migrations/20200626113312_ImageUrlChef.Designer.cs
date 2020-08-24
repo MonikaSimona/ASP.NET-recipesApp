@@ -4,14 +4,16 @@ using HealthyRecipes.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HealthyRecipes.Migrations
 {
     [DbContext(typeof(HealthyRecipesContext))]
-    partial class HealthyRecipesContextModelSnapshot : ModelSnapshot
+    [Migration("20200626113312_ImageUrlChef")]
+    partial class ImageUrlChef
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

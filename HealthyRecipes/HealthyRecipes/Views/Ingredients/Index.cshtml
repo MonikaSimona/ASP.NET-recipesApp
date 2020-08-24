@@ -7,62 +7,28 @@
 <h2>Ingredients</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">ADD</a> New Ingredient
+
 </p>
-@*<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageUrl)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CaloriesPerItem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProteinsPerItem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.SugarPerItem)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IngredientFact)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ImageUrl)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CaloriesPerItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProteinsPerItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.SugarPerItem)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IngredientFact)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>*@
+
+    <form asp-controller="Ingredients" asp-action="Index" method="get">
+        <p>
+
+            Find Ingredient: &nbsp; <input type="text" name="searchName" value="@ViewData["CurrentFilter1"]" />
+
+            <input class="submit" type="submit" value="Find" />
+            <br />
+
+        </p>
+        
+
+    </form>
+
+    
+
+
+
+
 <div class="center-div">
     <div class="card-columns">
         @foreach (var item in Model)

@@ -183,3 +183,4 @@ C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\Hea
 C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\Edit.cshtml.g.cs
 C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\Index.cshtml.g.cs
 C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\SetIngredientsInRecipe.cshtml.g.cs
+C:\Users\Simona\Desktop\FEIT\6semestar\ServerskiWeb(.NET)\ASP.NET-recipesApp\HealthyRecipes\HealthyRecipes\obj\Debug\netcoreapp3.1\Razor\Views\RecipeIngredients\UnSetIngredients.cshtml.g.cs

@@ -20,9 +20,19 @@ namespace HealthyRecipes.Controllers
         }
 
         // GET: Ingredients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchName)
         {
-            return View(await _context.Ingredient.ToListAsync());
+            ViewData["CurrentFilter1"] = searchName;
+
+            var ingredients = from i in _context.Ingredient select i;
+
+            if (!String.IsNullOrEmpty(searchName))
+            {
+                ingredients = ingredients.Where(i => i.Name.Contains(searchName));
+            }
+            ingredients = ingredients.Include(i => i.Recipes).ThenInclude(i => i.Recipe).ThenInclude(i => i.Chef);
+
+            return View(ingredients);
         }
 
         // GET: Ingredients/Details/5

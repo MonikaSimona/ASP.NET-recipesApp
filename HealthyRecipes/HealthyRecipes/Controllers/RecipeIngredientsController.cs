@@ -21,20 +21,27 @@ namespace HealthyRecipes.Controllers
             _context = context;
         }
 
+        // GET: RecipeIngredients
+        public async Task<IActionResult> Index()
+        {
+            var healthyRecipesContext = _context.RecipeIngredient
+                .Include(r => r.Recipe)
+                .ThenInclude(r => r.Ingredients)
+                .Include(r => r.Ingredient)
+                .ThenInclude(r => r.Recipes);
+            return View(await healthyRecipesContext.ToListAsync());
+        }
+
         public async Task<IActionResult> SetIngredientsInRecipe(int amount)
         {
             IQueryable<Ingredient> ingredients = _context.Ingredient;
             IQueryable<Recipe> recipes = _context.Recipe;
-            int[] quantities = Enumerable.Range(1,100).Reverse().ToArray();
-            int[] calories = Enumerable.Range(0, 1000).Reverse().ToArray();
-            int[] proteins = Enumerable.Range(0, 1000).Reverse().ToArray();
+          
             var setIngredientsViewModel = new SetIngredientsViewModel
             {
                 Recipes = new SelectList(await recipes.ToListAsync(), "Id", "Title"),
                 Ingredients = new SelectList(await ingredients.OrderBy(s => s.Name).ToListAsync(), "Id", "Name"),
-                IngredientQuntities = new SelectList(quantities.ToList()),
-                CaloriesPerRecipes = new SelectList(calories.ToList()),
-                ProteinsPerRecipes = new SelectList(proteins.ToList())
+               
             };
             return View(setIngredientsViewModel);
 
@@ -44,7 +51,7 @@ namespace HealthyRecipes.Controllers
         [HttpPost]
         public async Task<IActionResult> SetIngredientsInRecipe(SetIngredientsViewModel entry)
         {
-            Recipe recipe = await _context.Recipe.FirstOrDefaultAsync(c => c.Id == entry.RecipeId);
+            Recipe recipe = await _context.Recipe.FirstOrDefaultAsync(r => r.Id == entry.RecipeId);
             if (recipe == null) return NotFound();
 
             if (ModelState.IsValid)
@@ -52,17 +59,14 @@ namespace HealthyRecipes.Controllers
                 foreach (int ingId in entry.IngredientIds)
                 {
                     RecipeIngredient recipeIngredient = await _context.RecipeIngredient
-                                        .FirstOrDefaultAsync(c => c.RecipeId == entry.RecipeId && c.IngredientId == ingId
-                                        && c.IngredientQuantity == entry.IngredientQuntity && c.CaloriesPerRecipe == entry.CaloriesPerRecipe && c.ProteinsPerRecipe == entry.ProteinsPerRecipe);
-                    if (recipeIngredient == null)
-                    {
+                                        .FirstOrDefaultAsync(r => r.RecipeId == entry.RecipeId && r.IngredientId == ingId);
+                                        
+                         if (recipeIngredient == null)
+                         {
                         recipeIngredient = new RecipeIngredient
                         {
                             RecipeId = entry.RecipeId,
-                            IngredientId = ingId,
-                            IngredientQuantity = entry.IngredientQuntity,
-                            CaloriesPerRecipe = entry.CaloriesPerRecipe,
-                            ProteinsPerRecipe = entry.ProteinsPerRecipe
+                            IngredientId = ingId
 
                         };
                         _context.Add(recipeIngredient);
@@ -70,18 +74,62 @@ namespace HealthyRecipes.Controllers
 
                 }
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), new { rTitle = recipe.Title, rIngQuan = entry.IngredientQuntity, rCal = entry.CaloriesPerRecipe, rProt = entry.ProteinsPerRecipe });
+                return RedirectToAction(nameof(Index), new { rTitle = recipe.Title});
             }
             return RedirectToAction(nameof(Index));
         }
 
 
-        // GET: RecipeIngredients
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> UnSetIngredients(int? recipeId)
         {
-            var healthyRecipesContext = _context.RecipeIngredient.Include(r => r.Ingredient).Include(r => r.Recipe);
-            return View(await healthyRecipesContext.ToListAsync());
+            IQueryable<RecipeIngredient> recipeIngredients = _context.RecipeIngredient;
+            //List<RecipeIngredient> recipeIngredients = await _context.RecipeIngredient.ToListAsync();
+            List<Recipe> recipes = await _context.Recipe.ToListAsync();
+            recipeIngredients = recipeIngredients.Include(e => e.Recipe).ThenInclude(r => r.Ingredients);
+            if (recipeId != null)
+            {
+                recipeIngredients = recipeIngredients.Where(r => r.RecipeId == recipeId);
+                
+            }if(recipeId != null)
+            {
+                recipeIngredients = recipeIngredients.Include(r => r.Ingredient); 
+            }
+            else
+                recipeIngredients = null;
+            
+            var unSetIngredients = new UnSetIngredientsViewModel
+            {
+                Recipes = new SelectList(recipes, "Id", "Title"),
+                RecipeIngredients = (recipeIngredients != null ? new SelectList(await recipeIngredients.OrderBy(r =>r.Ingredient.Name).ToListAsync(),"Id","Ingredient.Name" ) : null),
+                RecipeIngredientIds = (recipeIngredients != null ? await recipeIngredients.Select(r => r.Id).ToListAsync() : null)
+            };
+            return View(unSetIngredients);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UnSetIngredients(UnSetIngredientsViewModel entry)
+        {
+            if (ModelState.IsValid)
+            {
+                foreach (int riId in entry.RecipeIngredientIds)
+                {
+                    RecipeIngredient recipeIngredient = await _context.RecipeIngredient
+                        .FirstOrDefaultAsync(r => r.Id == riId);
+                    if (recipeIngredient != null)
+                    {
+                        _context.Update(recipeIngredient);
+                    }
+
+                }
+                await _context.SaveChangesAsync();
+                Recipe recipe = await _context.Recipe.FirstOrDefaultAsync(r => r.Id == entry.RecipeId);
+                return RedirectToAction(nameof(Index), new { rTitle = recipe.Title });
+            }
+            return RedirectToAction(nameof(Index));
+        }
+
+    
 
         // GET: RecipeIngredients/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -92,8 +140,8 @@ namespace HealthyRecipes.Controllers
             }
 
             var recipeIngredient = await _context.RecipeIngredient
-                .Include(r => r.Ingredient)
-                .Include(r => r.Recipe)
+                .Include(r => r.Ingredient).ThenInclude(r => r.Recipes)
+                .Include(r => r.Recipe).ThenInclude(r => r.Ingredients)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (recipeIngredient == null)
             {
@@ -193,8 +241,8 @@ namespace HealthyRecipes.Controllers
             }
 
             var recipeIngredient = await _context.RecipeIngredient
-                .Include(r => r.Ingredient)
-                .Include(r => r.Recipe)
+                 .Include(r => r.Ingredient).ThenInclude(r => r.Recipes)
+                .Include(r => r.Recipe).ThenInclude(r => r.Ingredients)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (recipeIngredient == null)
             {

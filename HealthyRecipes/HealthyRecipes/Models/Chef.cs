@@ -17,6 +17,7 @@ namespace HealthyRecipes.Models
         [StringLength(50)]
 
         public string LastName { get; set; }
+        public string ImageUrl { get; set; }
 
         public string FullName
         {

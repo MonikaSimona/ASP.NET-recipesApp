@@ -10,7 +10,11 @@
 <h2>Recipes</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">CREATE</a> New Recipe &nbsp; | Then <a asp-area="" asp-controller="RecipeIngredients" asp-action="SetIngredientsInRecipe">SET</a> the Ingredients | &nbsp;
+
+    Or <a asp-area="" asp-controller="RecipeIngredients" asp-action="UnSetIngredients">UNSET</a> Ingredients  of Existing Recipe &nbsp;
+
+
 </p>
 <form asp-controller="Recipes" asp-action="Index" method="get">
     <p>
@@ -18,35 +22,35 @@
             <option value="">All</option>
         </select>
         Title: <input type="text" asp-for="SearchString" />
-        <input type="submit" value="Filter" />
+        <input  class="submit" type="submit" value="Filter" />
     </p>
 </form>
 
 
 <div class="card-columns">
-    @foreach (var item  in Model.Recipes)
+    @foreach (var item in Model.Recipes)
     {
-    <div class="card">
+        <div class="card">
 
-        <div class="card-body">
-            <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+            <div class="card-body">
+                <h5 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h5>
+            </div>
+            <div class="card-img"><img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="355" height="200" /></div>
+            <div class="card-footer">
+                Prepare Time:
+                @Html.DisplayFor(modelItem => item.PrepareTime) minutes<br />
+                Type of recipe:
+                @Html.DisplayFor(modelItem => item.Type) <br />
+                Made by :
+                @Html.DisplayFor(modelItem => item.Chef.FullName)
+                <br /><br />
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+
+            </div>
         </div>
-        <div class="card-img" ><img src="@Html.DisplayFor(modelItem => item.ImageUrl)" width="355" height="200" /></div>
-        <div class="card-footer">
-            Prepare Time:
-            @Html.DisplayFor(modelItem => item.PrepareTime) minutes<br />
-            Type of recipe:
-            @Html.DisplayFor(modelItem => item.Type) <br />
-            Made by :
-            @Html.DisplayFor(modelItem => item.Chef.FullName)
-            <br /><br />
-            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-
-
-        </div>
-    </div>
 
 
     }

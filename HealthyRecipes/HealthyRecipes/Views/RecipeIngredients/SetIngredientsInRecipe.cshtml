@@ -7,23 +7,16 @@
 <hr />
 <form asp-action="SetIngredientsInRecipe">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    @Html.DisplayNameFor(model => model.RecipeId): <select asp-for="RecipeId" asp-items="Model.Recipes">
-        <option value=""></option>
+    Chose the Recipe you just created: <select asp-for="RecipeId" asp-items="Model.Recipes">
+        <option value="">Select</option>
     </select>
-    @Html.DisplayNameFor(model => model.IngredientQuntity): <select asp-for="IngredientQuntity" asp-items="Model.IngredientQuntities">
-        <option value=""></option>
-    </select>
-    @Html.DisplayNameFor(model => model.CaloriesPerRecipe): <select asp-for="CaloriesPerRecipe" asp-items="Model.CaloriesPerRecipes">
-        <option value=""></option>
-    </select>
-    @Html.DisplayNameFor(model => model.ProteinsPerRecipe): <select asp-for="ProteinsPerRecipe" asp-items="Model.ProteinsPerRecipes">
-        <option value=""></option>
-    </select>
+    <br />
+
     <hr />
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
-                <label asp-for="IngredientIds" class="control-label"></label>
+                <label asp-for="IngredientIds" class="control-label">Ingredients</label>
                 <select asp-for="IngredientIds" class="form-control js-example-basic-multiple" asp-items="Model.Ingredients">
                     <option value=""></option>
                 </select>
@@ -37,7 +30,7 @@
 </form>
 
 <div>
-    <a asp-action="Index">Back to Ingredients</a>
+    <a asp-controller="Recipes" asp-action="Index">Back to Recipes</a>
 </div>
 
 @section Scripts {

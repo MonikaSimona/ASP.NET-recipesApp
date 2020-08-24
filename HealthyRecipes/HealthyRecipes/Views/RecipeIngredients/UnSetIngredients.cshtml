@@ -1,0 +1,65 @@
+﻿@model HealthyRecipes.ViewModels.UnSetIngredientsViewModel
+@{
+    ViewData["Title"] = "UnSetIngredients";
+}
+
+<h1>UnSetIngredients</h1>
+<hr />
+<form asp-action="UnSetIngredients" method="get">
+    <p>
+        @Html.DisplayNameFor(model => model.RecipeId): 
+        <select asp-for="RecipeId" asp-items="Model.Recipes">
+            <option value="">Click</option>
+        </select>
+    </p>
+   
+</form>
+
+<hr />
+<div class="row">
+    <form asp-controller="RecipeIngredients" asp-action="UnSetIngredients">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div >
+            <div class="form-group">
+                <p>
+                    <label asp-for="RecipeIngredientIds" class="control-label"></label>
+                    <select asp-for="RecipeIngredientIds" class="form-control js-example-basic-multiple" asp-items="Model.RecipeIngredients">
+                        <option value="Choose">Click</option>
+                    </select>
+                </p>
+                
+            </div>
+        </div>
+        <div >
+            <div class="form-group" hidden disabled>
+                <label asp-for="RecipeId" class="control-label"></label>
+                <input asp-for="RecipeId" class="form-control" />
+                <span asp-validation-for="RecipeId" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="form-group ">
+            <hr />
+            <input style="font-weight:bold" type="submit" value="Unset these ingredients" class="btn btn-default" />
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-controller="Recipes" asp-action="Index">Back to Recipes</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#RecipeId").select2();
+            $("#RecipeIngredientIds").select2();
+            $('#RecipeId').change(function () {
+                this.form.submit();
+            });
+        });
+    </script>
+}

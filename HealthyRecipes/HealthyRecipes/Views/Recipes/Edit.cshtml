@@ -4,9 +4,9 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h2>Edit</h2>
 
-<h4>Recipe</h4>
+<h4>@Html.DisplayFor(model => model.Title)</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -44,7 +44,7 @@
                 <span asp-validation-for="ChefId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input class="submit" type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

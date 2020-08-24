@@ -1,15 +1,28 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
+
 
 /* Provide sufficient contrast against white background */
 a {
-  color: #0366d6;
+    font-family: 'Nunito', sans-serif;
+    color: #2D8945;
+}
+    a:hover {
+        color: #A27D2E;
+    }
+
+p {
+    font-family: 'Nunito', sans-serif;
+}
+
+h2 {
+    text-align:center;
+    font-family: 'Nunito', sans-serif;
+}
+
+ul {
+    font-family: 'Nunito', sans-serif;
 }
 
 .btn-primary {
@@ -17,6 +30,19 @@ a {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.submit {
+    color: #1A4F28;
+    background-color: #fbfafd;
+    border: solid 2px;
+    border-color: #1A4F28;
+}
+    .submit:hover {
+        color: #A27D2E;
+        background-color: #fbfafd;
+        border: solid 2px;
+        border-color: #A27D2E;
+    }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
@@ -27,7 +53,8 @@ a {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-  font-size: 14px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
 }
 @media (min-width: 768px) {
   html {
@@ -59,15 +86,41 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    font-family: 'Nunito', sans-serif;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
 }
+
+a.navbar-brand {
+    white-space: normal;
+    font-family: 'Yellowtail', cursive;
+    text-align: center;
+    font-size: xx-large;
+    word-break: break-all;
+}
+
+
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    font-family: 'Nunito', sans-serif;
+    line-height: 60px; /* Vertically center the text there */
+}
+
+.bg-navbar {
+    background: -webkit-linear-gradient(110deg, #A27D2E 60%, #1A4F28 60%);
+    background: -o-linear-gradient(110deg, #A27D2E 60%, #1A4F28 60%);
+    background: -moz-linear-gradient(110deg, #A27D2E 60%, #1A4F28 60%);
+    background: linear-gradient(110deg, #A27D2E 60%, #1A4F28 60%);
+}
+
+.bg-footer {
+    background: -webkit-linear-gradient(110deg, #1A4F28 60%, #A27D2E 60%);
+    background: -o-linear-gradient(110deg, #1A4F28 60%, #A27D2E 60%);
+    background: -moz-linear-gradient(110deg, #1A4F28 60%, #A27D2E 60%);
+    background: linear-gradient(110deg, #1A4F28 60%, #A27D2E 60%);
 }
 
 .card-columns .card:hover .card-img {
@@ -110,4 +163,6 @@ body {
 .center-div{
     margin:auto;
 }
+
+
 

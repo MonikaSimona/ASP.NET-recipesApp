@@ -21,10 +21,10 @@ namespace HealthyRecipes.Models
                 return;
             }
             context.Chef.AddRange(
-                new Chef { FirstName = "Gordon", LastName = "Ramsey" },
-                new Chef { FirstName = "Jamie", LastName = "Oliver" },
-                new Chef { FirstName = "Martha", LastName = "Stewart" },
-                new Chef { FirstName = "Monika", LastName = "Geller" }
+                new Chef { FirstName = "Gordon", LastName = "Ramsey", ImageUrl= "https://www-static.masterclass.com/chapters/1154/class_overview/1544666547-GR2_204_PommePuree_v8_Brightcove_v1.mp4.01_18_38_11.Still001.jpg?1544666547" },
+                new Chef { FirstName = "Jamie", LastName = "Oliver", ImageUrl= "https://keyassets-p2.timeincuk.net/wp/prod/wp-content/uploads/sites/50/2017/04/jamie-oliver-920x920.jpg" },
+                new Chef { FirstName = "Martha", LastName = "Stewart", ImageUrl= "https://i.dailymail.co.uk/1s/2018/10/22/14/5281154-6295517-image-m-14_1540213737743.jpg" },
+                new Chef { FirstName = "Monika", LastName = "Geller", ImageUrl= "https://i.pinimg.com/originals/1e/d9/38/1ed93875cad453ce5e4abd6017dbf147.jpg" }
 
                 );
             context.SaveChanges();

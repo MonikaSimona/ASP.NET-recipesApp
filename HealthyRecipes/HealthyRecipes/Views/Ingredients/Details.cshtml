@@ -7,6 +7,7 @@
 
 
 <div>
+    <h2>@Html.DisplayFor(model => model.Name)</h2>
    
     <hr />
     <dl class="row">
@@ -14,7 +15,7 @@
             
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
+            
         </dd>
         <dt class = "col-sm-2">
            
@@ -53,10 +54,12 @@
 {
     @foreach(var recipe in Model.Recipes)
     {
-        <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Recipe.Id">@recipe.Recipe.Title</a>
+        <p>
+            <a asp-controller="Recipes" asp-action="Details" asp-route-id="@recipe.Recipe.Id">@recipe.Recipe.Title</a>
+        </p>
     }
 }
-<br />
+<br /><br />
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
